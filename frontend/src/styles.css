@@ -1,0 +1,265 @@
+/* ─── Reset & Base ─────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #121212;
+  --surface: #1A1A1A;
+  --surface-hover: #1E1E1E;
+  --border: #2A2A2A;
+  --text: #EAEAEA;
+  --text-muted: #7A7A7A;
+  --text-soft: #AAAAAA;
+  --accent: #8B7B6B;
+  --accent-soft: #6B5B4E;
+  --delete: #6B4B4B;
+  --delete-confirm: #8B3A3A;
+  --error: #9B6B5B;
+  --radius: 14px;
+  --transition: 0.3s ease;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+/* ─── App Layout ────────────────────────────────────────── */
+.app {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 60px 24px 100px;
+}
+
+/* ─── Header ────────────────────────────────────────────── */
+.app-header {
+  text-align: center;
+  margin-bottom: 52px;
+}
+
+.app-title {
+  font-family: 'Lora', serif;
+  font-weight: 400;
+  font-size: 2.8rem;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  margin-bottom: 14px;
+}
+
+.app-tagline {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 300;
+  line-height: 1.8;
+  font-style: italic;
+  font-family: 'Lora', serif;
+}
+
+/* ─── Form Card ─────────────────────────────────────────── */
+.form-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+  margin-bottom: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.3);
+}
+
+.form-input,
+.form-textarea {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 300;
+  padding: 12px 4px;
+  width: 100%;
+  outline: none;
+  transition: border-color var(--transition);
+  resize: none;
+  line-height: 1.7;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  border-bottom-color: var(--accent);
+}
+
+.form-textarea {
+  min-height: 120px;
+  padding-top: 16px;
+}
+
+.form-error {
+  color: var(--error);
+  font-size: 0.82rem;
+  font-style: italic;
+  padding-left: 4px;
+}
+
+.form-button {
+  align-self: flex-end;
+  background: transparent;
+  border: 1px solid var(--accent-soft);
+  border-radius: 8px;
+  color: var(--text-soft);
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  padding: 10px 24px;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+
+.form-button:hover:not(:disabled) {
+  background: var(--accent-soft);
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+.form-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ─── Message List ──────────────────────────────────────── */
+.message-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ─── Message Card ──────────────────────────────────────── */
+.message-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
+  transition: opacity var(--transition), transform var(--transition);
+  position: relative;
+}
+
+.message-card--fading {
+  opacity: 0;
+  transform: translateY(-4px);
+}
+
+.message-to {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.message-content {
+  font-family: 'Lora', serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.85;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.message-delete {
+  margin-top: 20px;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  padding: 4px 0;
+  transition: color var(--transition);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: transparent;
+}
+
+.message-delete:hover:not(:disabled) {
+  color: var(--delete);
+  text-decoration-color: var(--delete);
+}
+
+.message-delete--confirm {
+  color: var(--delete-confirm);
+  text-decoration-color: var(--delete-confirm);
+}
+
+.message-delete:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ─── Empty State ───────────────────────────────────────── */
+.empty-state {
+  text-align: center;
+  padding: 60px 24px;
+  color: var(--text-muted);
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+/* ─── Loading & Error ───────────────────────────────────── */
+.app-loading,
+.app-error {
+  text-align: center;
+  color: var(--text-muted);
+  font-style: italic;
+  font-size: 0.9rem;
+  padding: 32px;
+}
+
+.app-error {
+  color: var(--error);
+}
+
+/* ─── Responsive ────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .app {
+    padding: 40px 16px 80px;
+  }
+
+  .app-title {
+    font-size: 2.2rem;
+  }
+
+  .form-card {
+    padding: 24px 20px;
+  }
+
+  .message-card {
+    padding: 24px 20px;
+  }
+}
